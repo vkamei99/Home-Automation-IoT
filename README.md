@@ -1,7 +1,7 @@
 # Home-Automation-IoT
 Projeto de automação residencial utilizando IoT (Internet of Things), com controle de iluminação e ventilação baseado em sensores de luz, movimento e temperatura, integrado a interfaces gráficas locais e remotas.
 
-:::mermaid
+```mermaid
     graph TD
     ESP32["Microcontrolador ESP32"]
     RemoteInterface["Interface Remota (Aplicação Web - Grafana)"]
@@ -27,4 +27,4 @@ Projeto de automação residencial utilizando IoT (Internet of Things), com cont
     Actuators -- "Operação" --> ESP32
     LCDInterface -- "Exibe dados" --> Sensors
     LCDInterface -- "Exibe status" --> Actuators
-:::
+```
