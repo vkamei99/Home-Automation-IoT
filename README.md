@@ -1,5 +1,4 @@
-# Projeto: Casa Inteligente
-
+<h1 style="text-align: center;">Projeto: Casa Inteligente</h1>
 <p style="text-align: center;">Trabalho realizado para a disciplina de Sistemas Embarcados I</p>
 
 **Objetivo:** Criar um sistema automatizado para monitorar e controlar a iluminação e a temperatura de um ambiente utilizando o ESP32.
@@ -59,9 +58,10 @@ Foi desenvolvida uma aplicação web utilizando a biblioteca [ESPAsyncWebServer]
    ```
 
 2. **Instale as bibliotecas necessárias na Arduino IDE:**
+   - Baixe as bibliotecas [`DHTesp`](https://github.com/beegee-tokyo/DHTesp) e [`ESPAsyncWebServer`](https://github.com/me-no-dev/ESPAsyncWebServer).
    - Abra a Arduino IDE.
-   - Vá em **Sketch** > **Incluir Biblioteca** > **Gerenciar Bibliotecas**.
-   - Procure e instale `DHTesp` e `ESPAsyncWebServer`.
+   - Vá em **Sketch** > **Incluir Biblioteca** > **Add .ZIP Library...**.
+   - Adicione as bibliotecas baixadas
 
 3. **Configure o ESP32:**
    - Conecte o ESP32 ao seu computador.
