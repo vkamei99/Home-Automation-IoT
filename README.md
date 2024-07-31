@@ -1,50 +1,79 @@
-# Projeto: “Casa Inteligente”
-<p style="text-align: center;">Trabalho feito para a Disciplina de Sistemas Embarcados I </p>
+# Projeto: Casa Inteligente
+
+<p style="text-align: center;">Trabalho realizado para a disciplina de Sistemas Embarcados I</p>
 
 **Objetivo:** Criar um sistema automatizado para monitorar e controlar a iluminação e a temperatura de um ambiente utilizando o ESP32.
 
-## Visão Geral do Projeto:
+## Visão Geral do Projeto
 
-**Sensores:**
-Foi usado os sensores Ultrassonico, LDR e o de Umidade e Temperatura
+Este projeto envolve a implementação de um sistema de automação residencial utilizando o ESP32, sensores de luz, distância, umidade e temperatura, além de atuadores como motor CC e LED. A interface gráfica foi desenvolvida tanto localmente, utilizando um display LCD, quanto remotamente, através de uma aplicação web.
 
-**Atuadores/Controle:**
-A partir dos dados dos sensores foi controlado os atuadores: Motor CC com PWM e Led
+## Sensores
 
-**Interface Gráfica:**
-Foi feita uma interface gráfica Local usando display LCD e Remota por meio de aplicações web
+### LDR
+O sensor LDR detecta a intensidade da luz ambiente. A leitura do sinal analógico recebido do sensor foi utilizada para controlar a iluminação.
 
-## Sensores:
-### Ldr
-Detecta a intensidade da luz ambiente. Foi feita a leitura do sinal analogico recebido do sensor.
+### Ultrassônico
+Utilizando um sensor ultrassônico, foi gerado um pulso cuja duração permite calcular a distância até um objeto.
 
-### Ultrassonico
-Foi gerado um Pulso e apartir da duração desse pulso foi calculado a distancia.
-
-### DHT 11
-Para a leitura de dados desse sensor foi usada a Biblioteca <a href= "https://github.com/beegee-tokyo/DHTesp" target = "blank"> DHTesp </a>
+### DHT11
+Para a leitura de dados de umidade e temperatura, foi utilizada a biblioteca [DHTesp](https://github.com/beegee-tokyo/DHTesp).
 
 ## Atuadores / Controle
+
 ### LED
-O controle do LED foi feito a partir da intensidade da luz medida pelo LDR
+O LED foi controlado com base na intensidade da luz medida pelo sensor LDR.
 
 ### Motor CC
-A velocidade do motor foi atenuada a partir de um **PWM** que foi controlado a partir do sensor ultrassonico (quanto mais longe mais rapido mais perto mais devagar)
+A velocidade do motor CC foi ajustada utilizando PWM, controlado pela distância medida pelo sensor ultrassônico. Quanto maior a distância, maior a velocidade do motor, e vice-versa.
 
 ### PWM
 **O que é PWM?**
-PWM (Pulse Width Modulation), ou Modulação por Largura de Pulso, é uma técnica que envolve a variação da largura dos pulsos em um sinal elétrico.
+PWM (Pulse Width Modulation), ou Modulação por Largura de Pulso, é uma técnica que envolve a variação da largura dos pulsos em um sinal elétrico. Em outras palavras, o PWM pulsa rapidamente um sinal digital, transmitindo informações pela variação da largura dos pulsos. Mais detalhes podem ser encontrados [aqui](https://blog.smartkits.com.br/pwm-como-usar/#:~:text=PWM%20(Pulse%20Width%20Modulation)%2C,da%20largura%20de%20uma%20onda).
 
-Em outras palavras, o PWM pulsa rapidamente um sinal digital em um condutor, transmitindo uma informação pela variação da largura de uma onda. Isso significa que, em vez de manter um sinal em níveis constantes, a largura dos pulsos é alterada.
-<a href= "https://blog.smartkits.com.br/pwm-como-usar/#:~:text=PWM%20(Pulse%20Width%20Modulation)%2C,da%20largura%20de%20uma%20onda." target = "blank"> Explicação completa </a>
-
-## Interface Gráfica:
+## Interface Gráfica
 
 ### Local - Display LCD
-No display LCD usamos o modulo i²C para diminuir a quantidade de cabos e facilitar a montagem. O display esta configurado para mostrar os dados do sensor DHT11
+Utilizando um módulo i²C para o display LCD, reduzimos a quantidade de cabos e facilitamos a montagem. O display está configurado para mostrar os dados do sensor DHT11.
 
 ### Remota - Aplicação Web
-Foi feita uma aplicação remota a partir da biblioteca <a href= "https://github.com/me-no-dev/ESPAsyncWebServer" target = "blank"> ESPAsyncWebServer </a> onde foi possivel configurar uma pagina HTML onde podemos ver os dados e ainda controlar os atuadores manualmente
+Foi desenvolvida uma aplicação web utilizando a biblioteca [ESPAsyncWebServer](https://github.com/me-no-dev/ESPAsyncWebServer), permitindo a visualização dos dados e o controle manual dos atuadores através de uma página HTML.
+
+## Instalação
+
+### Pré-requisitos
+- ESP32
+- Sensores (LDR, Ultrassônico, DHT11)
+- Atuadores (LED, Motor CC)
+- Display LCD com módulo i²C
+- Arduino IDE instalada no seu computador
+- Bibliotecas necessárias: `DHTesp`, `ESPAsyncWebServer`
+
+### Passos para Instalação
+
+1. **Clone o repositório:**
+
+   ```bash
+   git clone https://github.com/vkamei99/Home-Automation-IoT.git
+   cd Home-Automation-IoT
+   ```
+
+2. **Instale as bibliotecas necessárias na Arduino IDE:**
+   - Abra a Arduino IDE.
+   - Vá em **Sketch** > **Incluir Biblioteca** > **Gerenciar Bibliotecas**.
+   - Procure e instale `DHTesp` e `ESPAsyncWebServer`.
+
+3. **Configure o ESP32:**
+   - Conecte o ESP32 ao seu computador.
+   - Carregue o código do repositório para o ESP32.
+   - Certifique-se de que os pinos estão conectados corretamente conforme indicado no código.
+
+4. **Configure a interface web:**
+   - Certifique-se de que o ESP32 está conectado à mesma rede que o seu computador.
+   - Abra o navegador e acesse o endereço IP fornecido pelo ESP32 para acessar a interface web.
+
+5. **Montagem do hardware:**
+   [esquema](img/esquema.jpg)
 
 ## Testagem e Prototipagem
-Para criar um abiente de testes seguro e estavel foi desenvolvido um prototipo do circuito no TinkerCad voce pode ver o esquematico acessando esse <a href= "https://www.tinkercad.com/things/almQPwROdbh-trab-embarcados?sharecode=HNUUGkxfbwIo7BN9pCX_iZ20gPJYtISwEIajwCkqmyk" target = "blank">link</a>
+Para garantir um ambiente de testes seguro e estável, foi desenvolvido um protótipo do circuito no TinkerCad. O esquemático pode ser visualizado através deste [link](https://www.tinkercad.com/things/almQPwROdbh-trab-embarcados?sharecode=HNUUGkxfbwIo7BN9pCX_iZ20gPJYtISwEIajwCkqmyk).
